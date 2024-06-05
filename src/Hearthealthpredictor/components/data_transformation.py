@@ -83,8 +83,10 @@ class DataTransformation:
             
             logging.info("Preprocessing pickle file saved")
             
-            return train_arr, test_arr
-            
+            return (
+                train_arr, 
+                test_arr
+            )
         except Exception as e:
             logging.info("Exception occurred in the initialize_data_transformation")
             raise customexception(e, sys)
