@@ -55,17 +55,16 @@
     <h2>Insight into Your Heart: See Your Results Instantly</h2>
     <div class="result">
         <h3 class="{% if final_result == 1 %}result-red{% elif final_result == 0 %}result-green{% endif %}">The Chances of Having a Heart Disease: {{ final_result }}</h3>
-        <p>1 = Having heart disease, 0 = Not having heart disease</p>
-        {% if final_result == 1 %}
-            <p class="recommendation">We recommend you consult a healthcare provider for a thorough evaluation and take necessary precautions.</p>
-        {% else %}
-            <p class="recommendation">Your heart health seems good, but regular check-ups are always beneficial.</p>
-        {% endif %}
+        <p>1.0 = Having heart disease, 0.0 = Not having heart disease</p>
     </div>
 
-    <div class="button">
-        <a href="form.html">Go Back</a>
-    </div>
+    {% if final_result == 1 %}
+        <p class="recommendation">We recommend you consult a healthcare provider for a thorough evaluation and take necessary precautions.</p>
+    {% else %}
+        <p class="recommendation">Your heart health seems good, but regular check-ups are always beneficial.</p>
+    {% endif %}
+
+    
     
     <div class="thanks">
         <p>Thank you for using our Heart Disease Prediction Portal.</p>
