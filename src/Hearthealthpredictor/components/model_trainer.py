@@ -14,10 +14,13 @@ from src.Hearthealthpredictor.utils.utils import save_object, evaluate_model
 
 
 @dataclass 
+class ModelTrainerConfig:
+    trained_model_file_path = os.path.join('artifacts','model.pkl')
+    
 class ModelTrainer:
     def __init__(self):
-        self.model_trainer_config = ModelTrainerConfig()
-    
+        self.model_trainer_config = ModelTrainerConfig() 
+          
     def initate_model_training(self, train_array, test_array):
         try:
             logging.info('Splitting Dependent and Independent variables from train and test data')
@@ -44,13 +47,19 @@ class ModelTrainer:
                 'NaiveBayes': GaussianNB()
             }
 
-            # Evaluate regression models
-            regression_report = {model_name: evaluate_model(X_train, y_train, X_test, y_test, model) 
-                                 for model_name, model in regression_models.items()}
+            # Fit regression models and make predictions
+            regression_report = {}
+            for model_name, model in regression_models.items():
+                model.fit(X_train, y_train)
+                y_pred = model.predict(X_test)
+                regression_report[model_name] = evaluate_model(y_test, y_pred, 'r2')
             
-            # Evaluate classification models
-            classification_report = {model_name: evaluate_model(X_train, y_train, X_test, y_test, model) 
-                                      for model_name, model in classification_models.items()}
+            # Fit classification models and make predictions
+            classification_report = {}
+            for model_name, model in classification_models.items():
+                model.fit(X_train, y_train)
+                y_pred = model.predict(X_test)
+                classification_report[model_name] = evaluate_model(y_test, y_pred, 'classification')
 
             print("Regression Model Report:")
             print(regression_report)
