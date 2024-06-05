@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
-from src.logger.logging import logging
-from src.exception import customexception
+from src.Hearthealthpredictor.logger import logging
+from src.Hearthealthpredictor.exception import customexception
 
 import os
 import sys
@@ -24,7 +24,7 @@ class DataIngestion:
         logging.info("data ingestion started")
         
         try:
-            data=pd.read_csv(Path(os.path.join("experiments","heart.csv")))
+            data=pd.read_csv(Path(os.path.join("notebooks/data","heart.csv")))
             logging.info(" i have read dataset as a df")
             
             

@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
-from src.logger.logging import logging
-from src.exception import customexception
+from src.Hearthealthpredictor.logger import logging
+from src.Hearthealthpredictor.exception import customexception
 import os
 import sys
 from dataclasses import dataclass
@@ -11,7 +11,7 @@ from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 from sklearn.impute import SimpleImputer
-from src.utils.utils import save_object
+from src.Hearthealthpredictor.utils.utils import save_object
 
 @dataclass
 class DataTransformationConfig:

@@ -4,11 +4,11 @@ import mlflow
 import mlflow.sklearn
 import numpy as np
 import pickle
-from src.utils.utils import load_object
+from src.Hearthealthpredictor.utils.utils import load_object
 from urllib.parse import urlparse
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score, accuracy_score, precision_score, recall_score, f1_score
-from src.logger.logging import logging
-from src.exception import customexception
+from src.Hearthealthpredictor.logger import logging
+from src.Hearthealthpredictor.exception import customexception
 
 class ModelEvaluation:
     def __init__(self):
