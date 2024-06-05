@@ -1,9 +1,95 @@
+<!DOCTYPE html>
 <html>
 <head>
-    <title>Welcome to Abhishek Heart Disease  Prediction Portal</title>
+    <title>Heart Disease Prediction Form</title>
+    <style>
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+        }
+        
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 220px;
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            border-radius: 5px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -110px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .info {
+            background-color: #f9f9f9;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
     <h1>Heart Health Checkup: Complete The Heart Disease Prediction Form</h1>
+    
+    <div class="info">
+        <h2>Feature Descriptions</h2>
+        <p><strong>Age:</strong> The age of the individual in years.</p>
+        <p><strong>Sex:</strong> The sex of the individual (1 = Male, 0 = Female).</p>
+        <p><strong>Chest Pain Type (cp):</strong></p>
+        <ul>
+            <li>0 = Typical Angina: Chest pain related to decreased blood supply to the heart.</li>
+            <li>1 = Atypical Angina: Chest pain not related to heart conditions.</li>
+            <li>2 = Non-Anginal Pain: Chest pain not related to heart conditions.</li>
+            <li>3 = Asymptomatic: No chest pain.</li>
+        </ul>
+        <p><strong>Resting Blood Pressure (trestbps):</strong> The individual's resting blood pressure in mm Hg.</p>
+        <p><strong>Serum Cholesterol (chol):</strong> The individual's serum cholesterol level in mg/dl.</p>
+        <p><strong>Fasting Blood Sugar (fbs):</strong> Whether the individual's fasting blood sugar is &gt; 120 mg/dl (1 = True, 0 = False).</p>
+        <p><strong>Resting ECG Results (restecg):</strong></p>
+        <ul>
+            <li>0 = Normal</li>
+            <li>1 = ST-T wave abnormality (e.g., T wave inversions or ST elevation/depression)</li>
+            <li>2 = Left ventricular hypertrophy by Estes' criteria</li>
+        </ul>
+        <p><strong>Maximum Heart Rate Achieved (thalach):</strong> The maximum heart rate achieved by the individual.</p>
+        <p><strong>Exercise Induced Angina (exang):</strong> Whether exercise-induced angina occurs (1 = Yes, 0 = No).</p>
+        <p><strong>ST Depression Induced by Exercise (oldpeak):</strong> The amount of ST depression induced by exercise relative to rest.</p>
+        <p><strong>Slope of Peak Exercise ST Segment (slope):</strong></p>
+        <ul>
+            <li>0 = Upsloping</li>
+            <li>1 = Flat</li>
+            <li>2 = Downsloping</li>
+        </ul>
+        <p><strong>Number of Major Vessels Colored by Fluoroscopy (ca):</strong> The number of major vessels (0-3) colored by fluoroscopy.</p>
+        <p><strong>Thalassemia (thal):</strong></p>
+        <ul>
+            <li>1 = Normal</li>
+            <li>2 = Fixed Defect</li>
+            <li>3 = Reversible Defect</li>
+        </ul>
+    </div>
+
     <form action="{{ url_for('predict_datapoint') }}" method="POST">
         <div class="form-group">
             <label for="age">Age:</label>
@@ -21,15 +107,16 @@
         <div class="form-group">
             <label for="cp">Chest Pain Type (0-3):</label>
             <input type="number" id="cp" name="cp" placeholder="Enter chest pain type">
+            <small>0 = Typical Angina, 1 = Atypical Angina, 2 = Non-Anginal Pain, 3 = Asymptomatic</small>
         </div>
 
         <div class="form-group">
-            <label for="trestbps">Resting Blood Pressure:</label>
+            <label for="trestbps">Resting Blood Pressure (in mm Hg):</label>
             <input type="number" id="trestbps" name="trestbps" placeholder="Enter resting blood pressure">
         </div>
 
         <div class="form-group">
-            <label for="chol">Serum Cholesterol:</label>
+            <label for="chol">Serum Cholesterol (in mg/dl):</label>
             <input type="number" id="chol" name="chol" placeholder="Enter serum cholesterol">
         </div>
 
@@ -39,11 +126,15 @@
                 <option value="1">True</option>
                 <option value="0">False</option>
             </select>
+            <div class="tooltip">?
+                <span class="tooltiptext">Fasting blood sugar &gt; 120 mg/dl</span>
+            </div>
         </div>
 
         <div class="form-group">
             <label for="restecg">Resting ECG Results (0-2):</label>
             <input type="number" id="restecg" name="restecg" placeholder="Enter resting ECG results">
+            <small>0 = Normal, 1 = ST-T wave abnormality, 2 = Left ventricular hypertrophy</small>
         </div>
 
         <div class="form-group">
@@ -67,6 +158,7 @@
         <div class="form-group">
             <label for="slope">Slope of Peak Exercise ST Segment (0-2):</label>
             <input type="number" id="slope" name="slope" placeholder="Enter slope of peak exercise ST segment">
+            <small>0 = Upsloping, 1 = Flat, 2 = Downsloping</small>
         </div>
 
         <div class="form-group">
@@ -76,7 +168,7 @@
 
         <div class="form-group">
             <label for="thal">Thalassemia (1 = Normal, 2 = Fixed Defect, 3 = Reversible Defect):</label>
-            <input type="number" id="thal" name="thal" placeholder="Enter thalassemia">
+            <input type="number" id="thal" name="thal" placeholder="Enter thalassemia type">
         </div>
 
         <input type="submit" value="Submit">
