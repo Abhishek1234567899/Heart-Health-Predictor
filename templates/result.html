@@ -3,19 +3,36 @@
 <head>
     <title>Heart Disease Prediction Result</title>
     <style>
-        .result-container {
-            position: relative;
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 20px;
+            color: #333;
             text-align: center;
-            margin: 20px;
         }
-
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #4CAF50;
+        }
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .result-container {
+            margin-top: 20px;
+        }
         .explanation {
-            position: absolute;
-            top: -10px;
-            left: 10px;
             font-size: 0.9em;
+            color: #666;
         }
-
         .result {
             background-color: #f9f9f9;
             padding: 20px;
@@ -23,48 +40,42 @@
             border: 1px solid #ddd;
             border-radius: 5px;
             display: inline-block;
-            text-align: center;
         }
-
         .result-red {
             color: red;
         }
-
-        .result-green {
-            color: green;
-        }
-
         .recommendation {
             color: blue;
             font-weight: bold;
             margin-top: 20px;
         }
-
         .thanks {
-            margin-top: 20px;
+            margin-top: 30px;
             font-weight: bold;
             text-align: center;
         }
     </style>
 </head>
 <body>
-    <h1>Welcome to Abhishek Heart Disease Prediction Portal</h1>
-    <h2>Insight into Your Heart: See Your Results Instantly</h2>
-    
-    <div class="result-container">
-        <p class="explanation">1.0 = Having heart disease, 0.0 = Not having heart disease</p>
-        <div class="result">
-            <h3 class="{% if final_result == 1 %}result-red{% elif final_result == 0 %}result-green{% endif %}">The Chances of Having a Heart Disease: {{ final_result }}</h3>
-            {% if final_result == 1 %}
-                <p class="recommendation">We recommend you consult a healthcare provider for a thorough evaluation and take necessary precautions.</p>
-            {% else %}
-                <p class="recommendation">Your heart health seems good, but regular check-ups are always beneficial.</p>
-            {% endif %}
+    <div class="container">
+        <h1>Welcome to Abhishek Heart Disease Prediction Portal</h1>
+        <h2>Insight into Your Heart: See Your Results Instantly</h2>
+        
+        <div class="result-container">
+            <p class="explanation">1.0 = Having heart disease, 0.0 = Not having heart disease</p>
+            <div class="result">
+                <h3>The Chances of Having a Heart Disease: <span class="result-red">{{ final_result }}</span></h3>
+                {% if final_result == 1 %}
+                    <p class="recommendation">We recommend you consult a healthcare provider for a thorough evaluation and take necessary precautions.</p>
+                {% else %}
+                    <p class="recommendation">Your heart health seems good, but regular check-ups are always beneficial.</p>
+                {% endif %}
+            </div>
         </div>
-    </div>
 
-    <div class="thanks">
-        <p>Thank you for using our Heart Disease Prediction Portal.</p>
+        <div class="thanks">
+            <p>Thank you for using our Heart Disease Prediction Portal.</p>
+        </div>
     </div>
 </body>
 </html>

@@ -2,10 +2,60 @@
 <html>
 <head>
     <title>Welcome to Abhishek Heart Disease Prediction Portal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e0f7fa;
+            color: #004d40;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            text-align: center;
+            padding: 50px;
+        }
+        h1 {
+            color: #00695c;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1.2em;
+            margin-bottom: 40px;
+        }
+        .button {
+            background-color: #00796b;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #004d40;
+        }
+        .info-box {
+            background-color: #ffffff;
+            border: 1px solid #00695c;
+            border-radius: 10px;
+            padding: 20px;
+            display: inline-block;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to Abhishek Heart Disease Prediction Portal</h1>
-    <p>Check your heart health by completing our prediction form.</p>
-    <a href="predict"><button>Start Checkup</button></a>
+    <div class="container">
+        <h1>Welcome to Abhishek Heart Disease Prediction Portal</h1>
+        <p>Check your heart health by completing our prediction form.</p>
+        <a class="button" href="predict">Start Checkup</a>
+        <div class="info-box">
+            <h2>About Our Service</h2>
+            <p>Our advanced heart disease prediction tool leverages cutting-edge technology to provide you with a personalized assessment of your heart health. Simply input your details into our form, and our system will generate a comprehensive analysis for you.</p>
+        </div>
+    </div>
 </body>
 </html>
