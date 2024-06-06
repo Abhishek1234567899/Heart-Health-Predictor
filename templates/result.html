@@ -3,12 +3,26 @@
 <head>
     <title>Heart Disease Prediction Result</title>
     <style>
+        .result-container {
+            position: relative;
+            text-align: center;
+            margin: 20px;
+        }
+
+        .explanation {
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            font-size: 0.9em;
+        }
+
         .result {
             background-color: #f9f9f9;
             padding: 20px;
-            margin: 20px;
+            margin-top: 20px;
             border: 1px solid #ddd;
             border-radius: 5px;
+            display: inline-block;
             text-align: center;
         }
 
@@ -23,49 +37,32 @@
         .recommendation {
             color: blue;
             font-weight: bold;
-        }
-
-        .button {
             margin-top: 20px;
-        }
-
-        .button a {
-            display: inline-block;
-            padding: 10px 20px;
-            margin: 10px;
-            color: #fff;
-            background-color: #007bff;
-            border: none;
-            border-radius: 5px;
-            text-decoration: none;
-        }
-
-        .button a:hover {
-            background-color: #0056b3;
         }
 
         .thanks {
             margin-top: 20px;
             font-weight: bold;
+            text-align: center;
         }
     </style>
 </head>
 <body>
     <h1>Welcome to Abhishek Heart Disease Prediction Portal</h1>
     <h2>Insight into Your Heart: See Your Results Instantly</h2>
-    <div class="result">
-        <h3 class="{% if final_result == 1 %}result-red{% elif final_result == 0 %}result-green{% endif %}">The Chances of Having a Heart Disease: {{ final_result }}</h3>
-        <p>1.0 = Having heart disease, 0.0 = Not having heart disease</p>
+    
+    <div class="result-container">
+        <p class="explanation">1.0 = Having heart disease, 0.0 = Not having heart disease</p>
+        <div class="result">
+            <h3 class="{% if final_result == 1 %}result-red{% elif final_result == 0 %}result-green{% endif %}">The Chances of Having a Heart Disease: {{ final_result }}</h3>
+            {% if final_result == 1 %}
+                <p class="recommendation">We recommend you consult a healthcare provider for a thorough evaluation and take necessary precautions.</p>
+            {% else %}
+                <p class="recommendation">Your heart health seems good, but regular check-ups are always beneficial.</p>
+            {% endif %}
+        </div>
     </div>
 
-    {% if final_result == 1 %}
-        <p class="recommendation">We recommend you consult a healthcare provider for a thorough evaluation and take necessary precautions.</p>
-    {% else %}
-        <p class="recommendation">Your heart health seems good, but regular check-ups are always beneficial.</p>
-    {% endif %}
-
-    
-    
     <div class="thanks">
         <p>Thank you for using our Heart Disease Prediction Portal.</p>
     </div>

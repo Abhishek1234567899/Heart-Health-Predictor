@@ -33,11 +33,15 @@
         
         .form-group {
             margin-bottom: 15px;
+            display: flex;
+            align-items: center;
         }
         
         .form-group label {
-            display: block;
-            margin-bottom: 5px;
+            margin-right: 10px;
+            width: 250px;
+            font-weight: bold;
+            color: #000; /* Dark black */
         }
 
         .info {
@@ -107,7 +111,6 @@
         <div class="form-group">
             <label for="cp">Chest Pain Type (0-3):</label>
             <input type="number" id="cp" name="cp" placeholder="Enter chest pain type">
-            <small>0 = Typical Angina, 1 = Atypical Angina, 2 = Non-Anginal Pain, 3 = Asymptomatic</small>
         </div>
 
         <div class="form-group">
@@ -134,7 +137,6 @@
         <div class="form-group">
             <label for="restecg">Resting ECG Results (0-2):</label>
             <input type="number" id="restecg" name="restecg" placeholder="Enter resting ECG results">
-            <small>0 = Normal, 1 = ST-T wave abnormality, 2 = Left ventricular hypertrophy</small>
         </div>
 
         <div class="form-group">
@@ -158,7 +160,6 @@
         <div class="form-group">
             <label for="slope">Slope of Peak Exercise ST Segment (0-2):</label>
             <input type="number" id="slope" name="slope" placeholder="Enter slope of peak exercise ST segment">
-            <small>0 = Upsloping, 1 = Flat, 2 = Downsloping</small>
         </div>
 
         <div class="form-group">
