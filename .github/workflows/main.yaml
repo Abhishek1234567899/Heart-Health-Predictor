@@ -33,7 +33,7 @@ jobs:
     - name: Build, tag, and push image to ECR
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        ECR_REPOSITORY: dimondpriceprediction # Ensure this matches your ECR repository name
+        ECR_REPOSITORY: hearthealthcareprediction # Ensure this matches your ECR repository name
         IMAGE_TAG: latest  # You can use any tag you prefer
       run: |
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
